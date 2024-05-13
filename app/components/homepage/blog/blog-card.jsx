@@ -50,7 +50,7 @@ function BlogCard({ blog }) {
           </p>
         </Link>
         <p className='mb-2 text-sm text-[#16f2b3]'>
-          {capitalizeFirstLetter(`${blog.categories[0]} `)}, {capitalizeFirstLetter(`${blog.categories[1]} `)}, {capitalizeFirstLetter(`${blog.categories[2]} `)}
+          #{capitalizeFirstLetter(`${blog.categories[0]} `)}, #{capitalizeFirstLetter(`${blog.categories[1]} `)}, #{capitalizeFirstLetter(`${blog.categories[2]} `)}
         </p>
         <p className='text-sm lg:text-base text-[#d3d8e8] pb-3 lg:pb-6 line-clamp-3'>
           {blog.description}
