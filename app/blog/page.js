@@ -54,7 +54,7 @@ function MediumArticles() {
                               }}> {item.title}
                             </a>
                           </h5>
-                          <div style={{}}>
+                          {/* <div style={{}}>
                             {item.categories.map((item_, index) => {
                               return (
                                 <a style={{
@@ -66,7 +66,7 @@ function MediumArticles() {
                                   target="_blank">#{item_}, </a>
                               )
                             })}
-                          </div>
+                          </div> */}
                           <div className="d-grid gap-2">
                             <a href={articleData.url}
                               className="btn btn-outline-primary"
