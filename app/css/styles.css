@@ -1,0 +1,11 @@
+/* Import Open Sans */
+@import 'typeface-open-sans';
+/* Import Playfair Display */
+@import 'typeface-playfair-display';
+/* Import League Spartan */
+@import 'typeface-league-spartan';
+
+.spartan-font {
+    font-family: 'League Spartan', sans-serif;
+    /* Use League Spartan */
+}
