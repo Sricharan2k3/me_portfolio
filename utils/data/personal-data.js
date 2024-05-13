@@ -2,7 +2,7 @@ export const personalData = {
   name: "Sricharan Nama",
   profile: '/profile.png',
   designation: "Software Developer",
-  description: "My name is Sricharan Nama. I am a professional and enthusiastic programmer in my daily life. I am a quick learner with a self-learning attitude. I love to learn and explore new technologies and am passionate about problem-solving. I love almost all the stacks of web application development and love to make the web more open to the world. My core skill is based on JavaScript and I love to do most of the things using JavaScript. I am available for any kind of job opportunity that suits my skills and interests.",
+  description: "My name is Sricharan Nama. I'm a dedicated and enthusiastic programmer in my daily work. I'm a quick learner with a drive for constantly improving my skills. Learning new technologies and solving complex problems really excites me. I love pretty much every aspect of web application development and am passionate about making the web more open and accessible to everyone. JavaScript is my bread and butter - it's where my core skills lie, and I enjoy tackling most coding challenges using JavaScript. I'm open to any job opportunity that's a good match for my skills and interests in this area.",
   email: 'namasricharan@gmail.com',
   phone: '+917742796678',
   address: 'Hyderabad, Telangana, India - 500094 ',
