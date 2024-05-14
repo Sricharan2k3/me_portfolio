@@ -1,90 +1,117 @@
+
 "use client"
+import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa';
+
+const { stripHtml } = require('string-strip-html');
+// import { MediumClient } from 'medium-sdk-ts';
+
+import BlogCard from '../components/homepage/blog/blog-card';
+
 import React, { useEffect, useState } from 'react';
-// import './MediumArticles.css';
 import axios from "axios";
 
-const url = "https://api.rss2json.com/v1/api.json?rss\_url=https://medium.com/feed/@namasricharan";
+// const medium = new MediumClient("2015607e6357629454219c22b2c5318afa9bedf412c48a54a242d26d0519c2448");
+const url = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@namasricharan";
+// const url ="https://medium.com/@yourhandle/latest?format=json  "
+// const posts = await medium.getPosts('@namsricharan');
 
-function MediumArticles() {
-  const [articleData, setArticleData] = useState(null);
-
-  const getData = async () => {
-    await axios.get(url)
-      .then((response) => {
-        setArticleData(response.data.items)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+const textEllipsis = (str, length = 100, ending = '...') => {
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
   }
+};
 
-  useEffect(() => {
-    getData();
-  },
-    [])
+const extractThumbnailFromMedium = (html) => {
+  const figureRegex =
+    /<figure[^>]*>(.*?)<img[^>]*src="([^"]*)"[^>]*>.*?<\/figure>/i;
 
-  return (
-    <div className="MediumArticles" style={{ margin: "5vh 0", color: "#232E44" }}>
-      {
-        articleData !== null ?
-          <div>
-            <div className="container">
-              <div className="row">
-                {articleData.map((item, index) => {
-                  return (
-                    <div key={index} className="col-sm-3">
-                      <div className="card" style={{ height: "45vh", margin: "1vh" }}>
-                        <a href={item.link} target="_blank">
-                          <div style={{
-                            backgroundImage: `url("${item.thumbnail}")`,
-                            height: "20vh",
-                            borderRadius: "0.375rem 0.375rem 0 0",
-                            backgroundSize: "100%"
-                          }}>
-                          </div>
-                        </a>
-                        <div className="card-body" style={{ overflow: "scroll", height: "14vh" }}>
-                          <h5 className="card-title">
-                            <a href={item.url} target="_blank" rel="noreferrer"
-                              style={{
-                                color: "#2463EB",
-                                fontSize: "1rem",
-                                textDecoration: "none",
-                                fontWeight: "700"
-                              }}> {item.title}
-                            </a>
-                          </h5>
-                          {/* <div style={{}}>
-                            {item.categories.map((item_, index) => {
-                              return (
-                                <a style={{
-                                  color: "#3d7100d4",
-                                  fontSize: "1.6vh",
-                                  textDecoration: "none"
-                                }}
-                                  href={`https://medium.com/tag/${item_}`}
-                                  target="_blank">#{item_}, </a>
-                              )
-                            })}
-                          </div> */}
-                          <div className="d-grid gap-2">
-                            <a href={articleData.url}
-                              className="btn btn-outline-primary"
-                              target="_blank" rel="noreferrer">Read</a>
-                          </div>
+  const match = figureRegex.exec(html);
 
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
+  if (match && match.length >= 3) {
+    return match[2];
+  } else {
+    return '';
+  }
+};
 
-              </div>
-            </div>
-          </div> : <span />
-      }
-    </div>
-  )
+const formatMediumPost = (post) => {
+  return {
+    title: post.title.trim(),
+    description: textEllipsis(
+      stripHtml(post.content, {
+        stripTogetherWithTheirContents: ['script', 'style', 'xml', 'figure'],
+      })
+        .result.replace('\n', '')
+        .trim()
+    ),
+    thumbnail:
+      post.thumbnail ||
+      extractThumbnailFromMedium(
+        stripHtml(post.content, {
+          ignoreTagsWithTheirContents: ['figure'],
+          stripTogetherWithTheirContents: ['script', 'style', 'xml', 'p'],
+        })
+          .result.replace('\n', '')
+          .trim()
+      ),
+    link: post.guid,
+    categories: post.categories,
+    publishedAt: new Date(post.pubDate),
+  };
+};
+
+function getBlogs() {
+  return axios.get(url)
+    .then(response => response.data.items)
+    .catch(error => {
+      console.log(error);
+      return [];
+    });
 }
 
-export default MediumArticles;
+function Blog() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    getBlogs().then(data => {
+      setBlogs(data);
+    });
+  }, []);
+
+  return (
+
+    <div id='blogs' >
+      <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl  opacity-20"></div>
+
+
+
+      <div className="flex justify-center my-5 lg:py-8">
+        <div className="flex  items-center">
+          <span className="w-full h-[2px] bg-[#1a1443]"></span>
+          <span className="spartan-font bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
+            Blogs
+          </span>
+          <span className="w-full h-[2px] bg-[#1a1443]"></span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
+        {
+          blogs.slice(0, blogs.length).map((blog, i) => (
+
+            <BlogCard blog={formatMediumPost(blog)} key={i} />
+          ))
+        }
+      </div>
+
+
+
+
+    </div>
+  );
+};
+
+export default Blog;
