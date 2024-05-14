@@ -7,9 +7,11 @@ const { stripHtml } = require('string-strip-html');
 // import { MediumClient } from 'medium-sdk-ts';
 
 import BlogCard from '../components/homepage/blog/blog-card';
-
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+
 
 // const medium = new MediumClient("2015607e6357629454219c22b2c5318afa9bedf412c48a54a242d26d0519c2448");
 const url = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@namasricharan";
@@ -84,6 +86,7 @@ function Blog() {
   return (
 
     <div id='blogs' >
+      <Navbar />
       <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl  opacity-20"></div>
 
 
@@ -109,7 +112,7 @@ function Blog() {
 
 
 
-
+      <Footer />
     </div>
   );
 };
