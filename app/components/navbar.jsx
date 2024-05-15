@@ -35,6 +35,9 @@ function Navbar() {
           <li>
             <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#projects"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600 spartan-font">Projects</div></Link>
           </li>
+          <li>
+            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#achievements"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600 spartan-font">Achievements</div></Link>
+          </li>
         </ul>
       </div>
     </nav>

@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import ThisCantBeReached from "./components/thisSiteCanBeReached/site-reach";
 import Footer from './components/footer';
 import Navbar from './components/navbar';
+import Membership from "./components/homepage/memberships";
 // async function getData() {
 //   const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
 
@@ -50,6 +51,7 @@ export default function Home() {
         <Projects />
         <Education />
         <Blog />
+        <Membership />
         <ContactSection />
         <Footer />
       </>)}
