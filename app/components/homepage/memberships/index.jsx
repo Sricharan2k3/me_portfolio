@@ -90,25 +90,35 @@ const Achievement = () => {
                     </div>
                 </div>
 
+
+
                 <div className="flex justify-center my-5 lg:py-8">
-                    <div className="flex  items-center">
-                        <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-                        <span className="spartan-font bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
-                            Achievements
-                        </span>
-                        <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-                    </div>
+                    <motion.div variants={textVariant()} initial="hidden" animate="visible">
+                        <div className="flex  items-center">
+
+                            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+                            <span className="spartan-font bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
+                                Achievements
+                            </span>
+                            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+
+                        </div>
+                    </motion.div>
                 </div>
+
+
+
 
 
                 <div className="mt-20 flex flex-col">
                     <VerticalTimeline>
-                        {experiences.map((experience, index) => (
+                        {experiences.slice().reverse().map((experience, index) => (
                             <AchievementCard
                                 key={`experience-${index}`}
                                 experience={experience}
                             />
                         ))}
+
                     </VerticalTimeline>
                 </div>
             </>

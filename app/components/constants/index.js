@@ -1,7 +1,20 @@
 import React from 'react';
 
 
-
+const navLinks = [
+    {
+        id: "about",
+        title: "About",
+    },
+    {
+        id: "work",
+        title: "Work",
+    },
+    {
+        id: "contact",
+        title: "Contact",
+    },
+];
 
 const experiences = [
     {
@@ -60,4 +73,4 @@ const experiences = [
     },
 ];
 
-export { experiences };
+export { experiences, navLinks };
