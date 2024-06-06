@@ -2,7 +2,7 @@ export const experiences = [
   {
     id: 1,
     title: 'Software Engineer',
-    company: "Kisanlink Praivate Ltd.",
+    company: "Kisanlink Private Ltd.",
     duration: "(May 2024 - Present)"
   },
   {
