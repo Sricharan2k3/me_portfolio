@@ -71,6 +71,20 @@ const experiences = [
             "Demonstrated creativity, problem-solving skills, and teamwork under pressure.",
         ],
     },
+
+    {
+        title: "Code For Good ",
+        company_name: "JP Morgan Chase & Co.",
+        iconBg: "#000000",
+        icon: "./jpmc1.png",
+        date: "June 2024",
+        points: [
+            "Developed a real time solution for NGO Foundation Bhatevara and contributes few ideas which enhanced the existing solution",
+            "Participated in a 24-hour hackathon, developing innovative ideas and solutions to real-world problems.",
+            "Collaborated with teammates to prototype and present a functional project within the given timeframe.",
+            "Demonstrated creativity, problem-solving skills, and teamwork under pressure.",
+        ],
+    },
 ];
 
 export { experiences, navLinks };
